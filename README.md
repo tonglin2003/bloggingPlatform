@@ -1,5 +1,6 @@
-# bloggingPlatform
+# bloggingPlatform Setup
 
+# Backend Node.js and Express
 1. Be sure to be inside the "blog-api" folder. Inside the terminal, enter the following commands to get the project be prepared for the Sequelize ORM and connection to PostgreSQL:
 ```
 npm install pg
@@ -54,10 +55,26 @@ The terminal might ask you to download nodemon, so you can download it by `sudo 
 I have provided some fake data to be used in the Postman API and the link is attached. Feel free to use or use it as a reference.
 Postman API: https://www.postman.com/docking-module-geoscientist-19290917/workspace/blog-platform/collection/25222511-155142d7-04c1-4f83-b3db-defc1b0eae1b?action=share&creator=25222511
 
+# Frontend React
+1. cd to `blog-client` with a new terminal or you may use the old one if you wish.
+
+2. enter the following in the terminal:
+```
+npm install
+npm install react-router-dom
+```
+
+3. Now we can start the react! Enter in the terminal:
+```
+npm run dev
+```
+
+#### Notes: Please start both servers, by running node.js by `npm start` and running `npm run dev` for the react.
+
 # API Endpoints:
-#### a. post request: "/signup"
+#### a. post request: "/api/auth/signup"
   - sign up an account for a user. Takes in `username` and `password`
-  - it logs the user into session too
+  - it logs the user into the session too
   - example body:
     ```
     {
@@ -66,7 +83,7 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
     }
     ```
 
-#### b. post request: "/login"
+#### b. post request: "/api/auth/login"
   - login for a user. Takes in `username` and `password` and check if given input exist in the database
   - it logs the user into the session too
   - example body:
@@ -77,15 +94,18 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
     }
     ```
 
-#### c. get request: "/posts"
+#### c. get user's post: "/api/posts/user"
+  - get all user's posts. Note: only available when the user is logged in.
+
+#### d. get request: "/api/posts"
   - gets all posts in the database. Note: only available when the user is logged in.
   - doesn't require any body
 
-#### d. get request: "/posts/:postId"
+#### e. get request: "/api/posts/:postId"
   - gets posts based on post id.
   - example request URL: "http://localhost:4000/posts/2"
 
-#### e. post request: "/posts"
+#### f. post request: "/api/posts"
   The request will post a post in the database.
   example body:
   ```
@@ -96,7 +116,7 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
   }
   ```
 
-#### f. patch request: "/posts/:postId"
+#### g. patch request: "/api/posts/:postId"
   The request update a post and locate the post by the posted in the URL. And Body contains the fields that want to be changed
   - example URL: "http://localhost:4000/posts/3"
   - example body:
@@ -107,12 +127,12 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
     }
     ```
 
-#### g. delete request: "/posts/:postId"
+#### h. delete request: "/api/posts/:postId"
   The request delete a post and locate the post by the posted in the URL. The request doens't take in any input other than the postId
   example URL: "http://localhost:4000/posts/3"
 
 
-#### h. post request: "/posts/:postId/comment
+#### i. post request: "/api/posts/:postId/comment
   The request will post a comment on a post. The post is located by the postId given in the URL.
   - example url: "http://localhost:4000/posts/3/comment"
   - example body:
@@ -122,7 +142,7 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
     }
     ```
 
-#### i. patch request: "/posts/:postId/comment
+#### j. patch request: "/api/posts/:postId/comment
   The request will update a comment on a post. The post is located by the postId given in the URL.
   - example url: "http://localhost:4000/posts/3/comment"
   - example body:
@@ -132,19 +152,19 @@ Postman API: https://www.postman.com/docking-module-geoscientist-19290917/worksp
     }
     ```
 
-#### j. fetch request: "/posts/:postId/comment
+#### k. fetch request: "/api/posts/:postId/comment
   The request will return all the comments of a post. The post is located by the postId given in the URL.
   - example url: "http://localhost:4000/posts/2/comment"
 
-#### k. fetch request: "/comment/:commentId"
+#### l. fetch request: "/api/comment/:commentId"
   The request will return a comment based on the commentId. The comment is located by the commentId given in the URL.
   - example url: "http://localhost:4000/comment/1"
 
-#### l. fetch request: "/user/comment"
+#### m. fetch request: "/api/user/comment"
   The request will return all comments of the current user. The userId is defined by the session when user logged in.
   - example url: "http://localhost:4000/user/comment"
 
-#### m. delete request: "/comment/:commentId"
+#### n. delete request: "/api/comment/:commentId"
   The request will delete a comment based on commentId given.
   - example url: "http://localhost:4000/comment/1"
 
