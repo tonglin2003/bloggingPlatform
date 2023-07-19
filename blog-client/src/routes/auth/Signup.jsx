@@ -6,7 +6,7 @@ export async function action({ request }) {
     const formData = await request.formData();
 
     console.log(Object.fromEntries(formData));
-    const response = await fetch("/api/auth/login", {
+    const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -22,12 +22,12 @@ export async function action({ request }) {
     return redirect("/");
 }
 
-function Login(){
+function Signup(){
     const { currentUser } = useContext(AuthContext);
     if(currentUser) { return <Navigate to="/" /> }
     return(
         <Form method="POST" className="d-flex row justify-content-center w-50 mx-auto">
-
+            <h1>Sign Up</h1>
         <div className="form-group mb-3">
             <label>Username</label>
             <input 
@@ -47,11 +47,11 @@ function Login(){
             className="form-control"  
             placeholder="Password"/>
         </div>
-        <span>Don&apos;t have an account? Sign up <Link to="/signup">here</Link> </span>
-        <button type="submit" className="btn btn-primary w-50">Login</button>
+        <span>Have an account already? Login <Link to="/login">here</Link> </span>
+        <button type="submit" className="btn btn-primary w-50">Sign up</button>
 
         </Form>
     )
 }
 
-export default Login;
+export default Signup;

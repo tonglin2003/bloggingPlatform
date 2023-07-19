@@ -13,6 +13,23 @@ router.get('/', autheticateUser, async (req,res)=>{
         res.status(500).send({message: err.message});
     }
 })
+// get all user posts
+router.get('/user', autheticateUser, async (req, res) => {
+    try {
+        const userId = parseInt(req.session.userId, 10);
+
+        const userPosts = await Posts.findAll({ where: { UserId: userId } });
+
+        if (userPosts && userPosts.length > 0) {
+            return res.status(200).json(userPosts);
+        } else {
+            return res.status(404).json({ message: "No posts found for the user" });
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 // get post based on id
 router.get('/:postId', autheticateUser, async (req,res)=>{
@@ -30,6 +47,8 @@ router.get('/:postId', autheticateUser, async (req,res)=>{
         res.status(500).send({message: err.message});
     }
 })
+
+
 
 // post a new post
 router.post('/', autheticateUser, async (req,res)=>{

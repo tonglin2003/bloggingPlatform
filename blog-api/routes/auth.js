@@ -78,4 +78,19 @@ router.delete("/logout", (req, res) => {
     });
   });
 
+  router.get("/current_user", async (req, res) => {
+    if (req.session.userId) {
+      const user = await Users.findByPk(req.session.userId);
+      return res.status(200).json({
+        user: {
+          id: user.id,
+          username: user.username
+        }
+      });
+    } else {
+      return res.status(401).json({user: null})
+    }
+  });
+
+
 module.exports = router;

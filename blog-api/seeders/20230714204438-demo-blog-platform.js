@@ -22,13 +22,13 @@ module.exports = {
         {
           post_title: "Post 1",
           post_content: "Content 1",
-          post_img_url: "url 1",
+          post_img_url: "https://via.placeholder.com/150x200.png",
           UserId: userId, 
         },
         {
           post_title: "Post 2",
           post_content: "Content 2",
-          post_img_url: "url 2",
+          post_img_url: "https://via.placeholder.com/150x200.png",
           UserId: userId,
         }
       ], {}

@@ -3,7 +3,16 @@ const app = express();
 const port = 4000
 const session = require("express-session");
 require("dotenv").config();
+const cors = require("cors");
 
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  })
+);
 
 app.use((req, res, next)=>{
     res.on("finish", ()=>{
