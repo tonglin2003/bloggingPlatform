@@ -10,6 +10,7 @@ import Signup, {action as signupAction} from './routes/auth/Signup';
 import Blog, {loader as blogLoader} from './routes/blog/blog';
 import PostBlog, {action as postBlogAction} from './routes/blog/PostBlog';
 import UserBlog, {loader as UserBlogLoader} from './routes/blog/UserBlog';
+import ErrorPage from './ErrorPage';
 
 
 
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   {
     path:"/",
     element: <Root/>,
-    errorElement: ( <h1>Oops error!</h1>),
+    errorElement: <ErrorPage/>,
     loader: rootLoader,
     action: rootAction,
     children: [
